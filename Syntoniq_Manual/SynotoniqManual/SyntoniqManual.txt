@@ -1,24 +1,12 @@
-SYNTONIQ MANUAL
 
-This is the manual for Syntoniq. Syntoniq converts musical notation in text files to Csound or MIDI output. It was designed from the beginning to represent music in any tuning system, which makes it ideal for use with microtonal music. Syntoniq can generate MIDI using MPE (MIDI Polyphonic Expression) with pitch-bend, specifically designed to be friendly to import into a Digital Audio Workstation for further refinement.
-How to Read This Manual
-
-The manual is divided into multiple parts. Parts are denoted by part chapters whose titles are ALL UPPERCASE. Later sections of the manual build upon earlier sections. Not all parts of the manual will matter to all people. When browsing the docs, be sure to read the part chapter for that part.
-
-The manual contains some text marked with FUTURE. This serves the dual purpose of being a reminder in the manual of things to update as we add new features and a signal to the reader that a potential change may be coming.
-
-FUTURE: remove the part about FUTURE if we finish all the FUTURE items!
-
-======================================================
-
-# SYNTONIQ 取扱説明書
++++ title = "はじめに" weight = 10 sort_by = "weight" +++
 
  Syntoniqにようこそ。SyontoniqはCLI上で動作するCsound&MIDIエディタです。貴方の思うあらゆる調律が可能で、殊に微分音音楽に適するよう設計されています。MIDIコントローラを用いての編集も可能で、MPEに対応したMIDIの書き出し、Csoundでの書き出しなど、表現の幅に富みます。そして貴方のお好みのDAWに、こちらで生成した音楽をインポートすることにより、更なる調整もお手のものになっております！！
 
 ## 取扱説明書の読み方
 
  この取扱説明書は七つの章に分かれています。一章につき複数のパッセージに分かれます。ボリュームのある説明書です。全ての章が全ての人にとって重要とは限りません。閲覧される際は、ご自身の用途に合わせて、該当する章をお読みください。
- この取扱説明書には{FUTURE}のように、朱を打たれた文字が含まれます。これは、新機能を追加される際に変更点を迅速にお伝えするとともに、将来的に仕様変更がありうるということを知らせる、2つの役割を担っています。
+ この取扱説明書には`FUTURE`のように、朱を打たれた文字が含まれます。これは、新機能を追加される際に変更点を迅速にお伝えするとともに、将来的に仕様変更がありうるということを知らせる、2つの役割を担っています。
 
-# 余談
+## 余談
  Syntoniqの名前の由来は、シントニックコンマ、ピタゴラス音律のウルフです。極めて強烈なうなりを発する、微分音音楽を学んだらまず最初に耳にするあの 81/80 の名前です。本来好まれないものを名前にする。気骨がありますよね（ゆる学徒ノリ）。
