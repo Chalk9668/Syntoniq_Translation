@@ -17,7 +17,7 @@ sort_by = "weight"
  このソフトウェアを利用するには、[Csound]を導入する必要があります。このリリースにおいては[Csound version 6.18.1]をご利用ください。尚、Syntoniqがβ版を終えたら、予告無しに[Csound 7]に変更される可能性があります。お手数ですが、ご自分で定期的な確認をしていただきますようお願い申し上げます。
 
  ## Windows環境の方へ
- Windows環境でSyntoniqをご利用になるには、Syntoniqのディレクトリ内に含まれる、’syntoniq-kbd’がMIDIコントローラとのインタフェースになります。インタフェースをマウントする為には、仮想MIDIポートをご自身のコンピュータに作成する必要があります。Syontoniqにおいては[LoopMIDI]を推奨しております。
+ Windows環境でSyntoniqをご利用になるには、Syntoniqのディレクトリ内に含まれる、`syntoniq-kbd`がMIDIコントローラとのインタフェースになります。インタフェースをマウントする為には、仮想MIDIポートをご自身のコンピュータに作成する必要があります。Syontoniqにおいては[LoopMIDI]を推奨しております。
  
 * [ここ](https://www.tobias-erichsen.de/software/loopmidi.html)から[LoopMIDI]をインストール
 * 指示に従い、loop portをsyntoniq-loopとして作成
