@@ -19,7 +19,7 @@ sort_by = "weight"
  ## Windows環境の方へ
  Windows環境でSyntoniqをご利用になるには、Syntoniqのディレクトリ内に含まれる、'syntoniq-kbd'がMIDIコントローラとのインタフェースになります。インタフェースをマウントする為には、仮想MIDIポートをご自身のコンピュータに作成する必要があります。Syontoniqにおいては[LoopMIDI]を推奨しております。
  
-* [ここ]（https://www.tobias-erichsen.de/software/loopmidi.html）から[LoopMIDI]をインストール
+* [ここ](https://www.tobias-erichsen.de/software/loopmidi.html)から[LoopMIDI]をインストール
 * 指示に従い、loop portをsyntoniq-loopとして作成
  
  ## UNIX環境の方へ
