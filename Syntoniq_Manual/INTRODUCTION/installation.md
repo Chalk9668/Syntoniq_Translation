@@ -6,50 +6,50 @@ sort_by = "weight"
 
 <!-- Note: the top-level README.md has a deep link to this section. Update it if the file is moved. -->
 
- [こちら](https://github.com/jberkenbilt/syntoniq/releases)からダウンロードしてください。指示に従い、次から該当するコンピュータのものをダウンロードしてください。
+[こちら](https://github.com/jberkenbilt/syntoniq/releases)からダウンロードしてください。指示に従い、次から該当するコンピュータのものをダウンロードしてください。
 
 * Linux amd64 (x86_64) and arm64 (aarch64) with and without Csound
 * MacOS universal binaries (supporting both Intel and Apple Silicon) with and without Csound
 * Windows x86_64 (64-bit only) with and without Csound
 
-  [Verifying Releases](#verifying-releases)は検証用/開発者用のリリースです。
+[Verifying Releases](#verifying-releases)は検証用/開発者用のリリースです。
 
- このソフトウェアを利用するには、[Csound]を導入する必要があります。このリリースにおいては[Csound version 6.18.1]をご利用ください。尚、Syntoniqがβ版を終えたら、予告無しに[Csound 7]に変更される可能性があります。お手数ですが、ご自分で定期的な確認をしていただきますようお願い申し上げます。
+このソフトウェアを利用するには、[Csound](https://csound.com/)を導入する必要があります。このリリースにおいては[Csound version 6.18.1](https://csound.com/download.html)をご利用ください。尚、Syntoniqがβ版を終えたら、予告無しに**Csound 7**に変更される可能性があります。お手数ですが、ご自分で定期的な確認をしていただきますようお願い申し上げます。
 
- ## Windows環境の方へ
- Windows環境でSyntoniqをご利用になるには、Syntoniqのディレクトリ内に含まれる、`syntoniq-kbd`がMIDIコントローラとのインタフェースになります。インタフェースをマウントする為には、仮想MIDIポートをご自身のコンピュータに作成する必要があります。Syontoniqにおいては[LoopMIDI]を推奨しております。
+## Windows環境の方へ
+Windows版はzipファイルで配布されています。Windows環境でSyntoniqをご利用になるには、Syntoniqのディレクトリ内に含まれる、`syntoniq-kbd`がMIDIコントローラとのインタフェースになります。インタフェースをマウントする為には、仮想MIDIポートをご自身のコンピュータに作成する必要があります。Syontoniqにおいては[LoopMIDI](https://forest.watch.impress.co.jp/docs/review/561423.html)を推奨しております。
  
-* [ここ](https://www.tobias-erichsen.de/software/loopmidi.html)から[LoopMIDI]をインストール
-* 指示に従い、loop portをsyntoniq-loopとして作成
- 
- ## UNIX環境の方へ
- 
+* [ここ](https://forest.watch.impress.co.jp/docs/review/561423.html)から**LoopMIDI**をインストール
+* 指示に従い、**loop port**を**syntoniq-loop**として作成
 
-Linux and Mac distributions are compressed tarballs. Windows distributions are zip files. They contain only the binaries for `syntoniq` and `syntoniq-kbd`. You just need to put these somewhere in your path or directly execute them. For the Csound versions, make sure they can find the Csound libraries. Using the default installation methods for Csound, this should work automatically. For Windows, be sure Csound is in your path. The installer offers to do this for you when you install, though you will need to restart your shell for it to take effect.
+Csoundがパスに含まれていることを確認してください。インストール時にインストーラ上で設定可能です。尚、有効にする為に一度全てのPowerShellを再起動する必要があります。
 
-## MacOS Notes
+## UNIX環境の方へ
+LinuxおよびMac版は、圧縮tarball形式で配布されています。これらはsyntoniqとsyntoniq-kbdのバイナリのみを含みます。パス内のどこかに配置するか、直接実行するだけで利用可能です。Csoundバージョンについては、Csoundライブラリが参照可能であることを確認してください。通常にCsoundを導入していれば自動的に設定されている筈です。
 
-On the Mac, the OS will complain about the downloaded binaries since they are not signed. You can fix from the shell with
+## MacOS環境での注意点
+MacOS環境だと、どうやらバイナリがおかしいと文句を言ってくるようです。その際は、下の一文をbashに入れていただければと思います。
+
 ```sh
 xattr -d com.apple.quarantine syntoniq syntoniq-kbd
 ```
 
-You can also follow the process with the UI:
-* Run the executable. You'll have to repeat this for each executable.
-* You will get a pop-up dialog telling you "syntoniq" (or "syntoniq-kbd") was "Not Opened"
-* There's a question mark hiding in the upper-left corner. Click it.
-* This opens a page explaining about the issue. If you trust the downloads, you can find the "Open Privacy & Security settings for me" link. Click that.
-* Scroll down to "Security" where it says "syntoniq" (or "syntoniq-kbd") was blocked to protect your Mac.
-* Click "Allow Anyway."
-* Run the executable again. This time, you will have "Open Anyway" as a choice. Once you click that, you're good to go until you replace the binary.
+UI用いての導入も可能です。手続きは以下のとおりです。
+* 実行ファイルを実行してください（ただし、以降は書く実行ファイルごとにここで示される操作を繰り返す必要があります）。
+* 「syntoniq」（または「syntoniq-kbd」）が開かれていないというポップアップダイアログが表示されます。確認したら、左上にある「？」を押下してください
+* 「isuue」を説明しているページが開きます。ダウンロード元を信頼し、「Open Privacy & Security settings for me」のリンクを探し、それを押下してください
+* 下に「security」までスクロールし、「syntoniq」（または「syntoniq-kbd」）がMacを保護するためにブロックされた旨を確認してください
+* 「Allow Anyway」を押下してください
+* 今回使用した実行ファイルを再度実行します。今度は「Allow Anyway」が選択肢として表示されます。これをクリックすれば、バイナリを置き換えるまで問題なくご利用可能です
 
-# Building from Source
+# ソースからビルド
+[top-level README.md](https://github.com/jberkenbilt/syntoniq/blob/main/README.md)からお願いいたします。
 
-Please see the [top-level README.md](https://github.com/jberkenbilt/syntoniq/blob/main/README.md) in the source repository for instructions.
-
-# Verifying Releases
-
-The `syntoniq-<version>.sha256` file contains sha256 checksums of all release assets. That file is also clear-signed with GPG using [this key](https://q.ql.org/pubkey.asc), with fingerprint `C2C96B10011FE009E6D1DF828A75D10998012C7E`. They are also signed with Cosign. You can verify with
+# 検証用・開発者用のリソース
+`syntoniq-<version>.sha256`ファイルには、すべてのリリース資産のSHA-256チェックサムが含まれています。そのファイルは、この鍵を用いてGPGによりクリア署名もされています（フィンガープリントは以下の通りです）。
+ `C2C96B10011FE009E6D1DF828A75D10998012C7E` 
+ 
+**Consign**によるデジタル署名が提供されています（認証は以下のとおりです）。
 ```
 cosign verify-blob syntoniq-x.y.z.sha256 --bundle syntoniq-x.y.z.sha256.sigstore \
    --certificate-identity=ejb@ql.org \
