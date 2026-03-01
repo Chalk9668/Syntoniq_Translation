@@ -1,18 +1,18 @@
 +++
-title = "Quick Start: Syntoniq Language"
+title = "クイックスタート Syntoniq言語を学ぶ "
 weight = 20
 sort_by = "weight"
 +++
 
-In this section, we will discuss the basics of the Syntoniq language and produce some simple music using the default scale, which is the "regular" 12-tone equal tempered scale with unsurprising note names. Later sections will describe using Syntoniq for microtonal music.
+このセクションでは、Syntoniq内で用いる記述、**Syntoniq Language（Syntoniq言語）**について説明し、デフォルトな（つまり、ごく普通の12EDOで、音名も驚くほど普通な）音楽での記譜を始めます。この後のセクションでは微分音音楽について説明します。
 
-Here's a simple Syntoniq score file:
+こちらはSytoniq言語で記述された簡単な楽譜です。
 
 <!-- generate include=hello.stq checksum=f7c2a15b5a54491b3b9f9e1c471b01ed442e3f2f5d1f75691ebc9e8c9bd4631e -->
 ```syntoniq
 syntoniq(version=1)
 
-; Here is some music
+; これはカデンツだよ。Enjoy your Syntoniq!
 [p1.0]  1:g a    b  c'
 [p1.1]  1:e f    g  g
 [p1.2]  2:c    1:f  e
@@ -24,13 +24,10 @@ syntoniq(version=1)
 
 {{ audio(src="hello-csound.mp3", caption="Audio Created with Csound") }}
 
-In this example:
-* `syntoniq(version=1)` is a *directive*. The `syntoniq` directive has to appear before any other content (except comments, spaces, and blank lines).
-* The line starting with `;` is a comment.
-* The group of contiguous lines that start with bracketed identifiers are a *score block*.
-* The lines that start with `[p1.n]` for some $n$ are *note lines*. `p1` is the *part name* and `n` is the *note number*.
-* The line that starts with `[p1]` is a *dynamic line*.
-* The lines are aligned, but this is not a requirement.
+この例はカデンツ第二型をハ長調で鳴らしたものです。順番に各行の説明をします。
+一番最初に書かれている```syntoniq(version=1)```は**おまじない**です。大まかに言うと、楽譜だと認識させる為の命令ブロックです。これは**楽譜の最初に書く**必要があります。
+次の行の頭、`;`は**コメント**です。`;`で始まるすべての行はコメントになり、命令として読み込まれません。UTF-8でエンコードできるものはだいたいいけます。
+4~8行目にかけての`[p1.0~4]`は
 
 The rest of this section will explain in more detail.
 
