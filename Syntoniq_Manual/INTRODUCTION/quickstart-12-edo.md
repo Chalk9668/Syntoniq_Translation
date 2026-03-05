@@ -4,7 +4,7 @@ weight = 20
 sort_by = "weight"
 +++
 
-このセクションでは、Syntoniq内で用いる記述、**Syntoniq Language** **Syntoniq言語**について説明し、デフォルトな（つまり、ごく普通の12EDOで、音名も驚くほど普通な）音楽での記譜を始めます。この後のセクションでは微分音音楽について説明します。
+このセクションでは、Syntoniq内で用いる記述、**Syntoniq Language** **Syntoniq言語**について説明し、デフォルトな（つまり、ごく普通の12EDOで、音名も驚くほど普通な）音楽での記譜を始めます。この後のセクションでは微分音音楽について説明します。だんだん詳しく説明されます。
 
 こちらはSytoniq言語で記述された簡単な楽譜です。
 
@@ -32,19 +32,67 @@ syntoniq(version=1)
 ### 記譜セクション
 4~8行目にかけての`[p1.0~4]`は。尚、今後この領域を**記譜セクション**と呼ぶこととします。
 
-The rest of this section will explain in more detail.
+今は仮の説明ですが、この後の段落でより詳しく、詳細な操作を可能にする記法を説明します。
 
 FUTURE: Update this section when the reformatter is done.
 
-# Structure of a Syntoniq File
+# Syntoniqファイルの構造
 
-A Syntoniq file represents a timeline of musical events. Its syntax takes some inspiration from both [Csound](https://csound.com) and [LilyPond](https://lilypond.org/), but it is unique to Syntoniq.
+Syntoniqファイル（この場ではSyntoniqの為に使われるファイルという意）はタイムラインを軸に記述されます。もっと詳しい言い方をするなら、タイムラインにより命令が入る余地が用意されるということです。このSyntoniqファイルの文法は[Csound](https://csound.com)と[LilyPond](https://lilypond.org/)から強い影響を受けており、似ていますが、異なるものです。
 
-In Syntoniq, musical notes and dynamics belong to *parts*. A part can be assigned to exactly one instrument and can play multiple notes at once. At any given time, a part has a specific *tuning*, which consists of a *scale* and a *base pitch*. A part's tuning can be changed at any time.
+Syntoniqでは、楽器ではなく、**Part**という単位で音符やそのダイナミクスが管理・表現され、その各Partは一つの楽器に割り当てられます。Partには和音など同時に複数の音を入れられます。又Partは**Tuning**という物を一つのPartずつ独自に持っており、これはBase pitchとScaleにより構成され、調律を決定します。このTuningは曲中のどこでも変更可能です。
 
-A Syntoniq file expresses music in *score blocks*. A score block consists of *note lines* and *dynamic lines*.
+音楽はScore blockという単位により表現されます。これにはNote lineという楽音を記述する領域と、Dynamic lineというダイナミクスを表現する領域に別れます。
 
-A Syntoniq file can also includes *scale definitions* and, if you are using the keyboard, *layout definitions*.
+加えて、Syntoniqファイルは、キーボードを使用される場合に、Scale definitionで音階をキーボードに定義でき、又Layout definitionでキーボード上の楽音のレイアウトを定義できます。
+
+# 余談
+死ぬほど分かりにくいと思うので、ちゃんと図解します。
+
+そもそも、このSyntoniq言語の文法を理解するにはこのアプリケーションの設計思想から理解しないといけない。私は設計者ではないけど、解説するよ。
+
+## 設計思想
+そもそも現代の微分音音楽の作曲に於ける最大の問題はなんだったか、それは**ありとあらゆるアプリケーションが12EDOの調律を前提としている**ということ。それを解決する為に、Syntoniqが名乗り出た訳です。元来のMIDIというのは、**一つの楽器に単一の調律**が結びついていた。これは12EDOだけでやるには十分だけど、複数の音律、例えばボレピだとか31EDO、スレンドロ音階をやりたい人にはあまりにもキツい。何故なら、MIDIは12EDOのオクターヴ分割法でしか楽音のデータを扱えないから。
+
+Syntoniqはこれに鮮やかな解決法を見出した。それは**音楽を構造化ファイルの変数と看做す**ということ。言われてみれば、我々の音楽だって簡単に構造化できる。例えばかえるの歌を擬似言語でSyntoniqっぽく構造化してみよう。
+
+```かえるの歌
+;おまじない
+Part1 (name = "かえるの歌_主旋律") {
+    調律(スケール="十二平均律", A4=440)
+    拍子="4/4"
+    速さ="100"
+    楽器="唄音ウタ(notes)"
+    オプション="単音で発音（歌声合成）"
+    }
+    
+Part2 (name = "かえるの歌_コード") {
+    調律(スケール="十二平均律", A4=440)
+    拍子="4/4"
+    速さ="100"
+    楽器="ピアノ"
+    オプション="コード譜"
+    }
+
+;ここから主旋律
+[p1]ド（か），レ（え），ミ（る），ファ（の）
+[p1]ミ（う），レ（た），ド（が），~
+[p1]ミ（き），ファ（こ），ソ（え），ラ（て）
+[p1]ソ（く），ファ（る），ミ（よ），~
+[p1]ド（くわ），ド（くわ），ド（くわ），ド（くわ）
+[p1]ド（け）ド（ろ），レ（け）レ（ろ），ミ（け）ミ（ろ），ファ（け）ファ（ろ）
+[p1]ミ（くわ），レ（くわ），ド（くわ）
+
+;ここからコード
+[p2]C *
+[p2]G7
+[p2]C
+[p2]C
+[p2]G7
+[p2]C
+```
+
+ただのカエルの歌だけでも、構造化できるものは多い。
 
 # Syntax Basics
 
