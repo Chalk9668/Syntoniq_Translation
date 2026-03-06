@@ -4,7 +4,9 @@ weight = 20
 sort_by = "weight"
 +++
 
-このセクションでは、Syntoniq内で用いる記述、**Syntoniq Language** **Syntoniq言語**について説明し、デフォルトな（つまり、ごく普通の12EDOで、音名も驚くほど普通な）音楽での記譜を始めます。この後のセクションでは微分音音楽について説明します。だんだん詳しく説明されます。
+このセクションでは、Syntoniq内で用いる記述、**Syntoniq言語**について説明し、デフォルトな（つまり、ごく普通の12EDOで、音名も驚くほど普通な）音楽での記譜を始めます。この後のセクションでは微分音音楽について説明します。だんだん詳しく説明されます。
+
+**完全なSyntoniq言語の説明は簡易なものです。全ての仕様については[こちら](../../reference/language-reference/)からお願いします。**
 
 こちらはSytoniq言語で記述された簡単な楽譜です。
 
@@ -94,33 +96,38 @@ Part2 (name = "かえるの歌_コード") {
 
 ただのカエルの歌だけでも、構造化できるものは多い。
 
-# Syntax Basics
+# 基本文法
 
-Syntoniq files usually end with the `.stq` extension, but this is not a requirement.
+Syntoniqファイルは通常、拡張子`.stq`を使用しますが、必須ではありません。**推奨**する程度です。
 
-A Syntoniq file consists of the following things:
+Syntoniqファイルは次の要素から成り、各々は次に示すような機能を持ちます、
 
-* Comments: the `;` introduces a comment. Comments last until the end of the line.
-* Directives: these look kind of like function calls and provide general instructions to Syntoniq.
-* Scale definitions: these allow you to define custom scales. You can either use Syntoniq's [generated scale](../../microtonality/generated-scales/) feature, or you can create your own completely custom scale where you give the pitches and note names.
-* Layout definitions: if you are using the [Syntoniq keyboard](../../keyboard/), you can create layouts to place the notes of your scales on the keyboard.
-* Score blocks: the heart of the language. Score blocks contain *note lines*, which include the notes and rhythms, and *dynamic lines*, which specify dynamics.
+* コメント要素 `;`
+コメントです。命令として解釈されません。
+* Directive要素
+実際の音楽となる楽音や調律の定義などを除いた、Syntoniqの指令です。現状ロジックは記述できませんが、関数呼び出しのような見た目になっています。
+* Scale definitions要素
+スケールをファイル内で定義します、[generated scale](../../microtonality/generated-scales/)にある、既に定義されたスケールを使うこともできますが、自分でピッチと音名を定義し使用することも可能です。尚、定義しない場合はデフォルトの12EDOが自動的に定義されます。
+* Layout definitions要素
+キーボードを使う際に定義するものです。キーボード上の音の配置を定義します。[Syntoniq keyboard](../../keyboard/)から既に定義されたものを使うこともできますが、自分で定義することも可能です。
+* Score blocks要素
+楽音とダイナミクスを表現します。note lineとdynamic lineから成り、note lineはScale definitions要素で定義された楽音を、dynamic lineは楽音のダイナミクスを表します。
 
-For a complete description of the Syntoniq language, see the [Language Reference](../../reference/language-reference/). Here are a few basics so you know what you're looking at.
+完全な説明は[こちら](../../reference/language-reference/)からお願いします。飽くまでも、ここでの説明は簡易的な説明となります。
 
 A note consists of up to three parts: `duration:name:modifiers`. The duration is a *number of beats*. If you use csound, this will be familiar. If you are used to LilyPond, it is different. In LilyPond, `4` is a quarter note, `2` is a half note, etc. In Syntoniq, `1` is a beat, `2` is two beats, etc. Syntoniq doesn't have any concept of quarter notes, etc., as it breaks free from the usual notational conventions of Western music. Durations in Syntoniq can be fractions of a beat, but we'll come back to that later.
 
 The note name always starts with a letter and may contain a wide range of characters. A note name may end with `'` followed by an optional number or `,` followed by an optional number. These indicate the number of *cycles* to go up (`'`) or down (`,`). These are similar to octave marks in LilyPond with some differences. If you want to go up or down two octaves, use `'2` or `,2` rather than repeating the mark. Also, notice that we used the term *cycle*, not *octave*. The term *cycle* refers to the interval over which a scale repeats. The default cycle size is the octave, but you can use other intervals&mdash;more on that later!
 
-The symbol `~` is a *hold*. It means "keep doing what you were doing." In this example, it indicates a rest, but it can also mean "keep sustaining a sustained note".
+この記号、`~` は*hold*と呼ばれます。命令の裏に付けるとhold命令になります。これは「出された命令を続ける」という意味と、「ノートをサスティンする」という二つの意味を持ちます。詳しくは後述します。
 
 This example doesn't include any note modifiers. Syntoniq supports a handful of modifiers to change articulation and note length and to sustain notes. There is no intention to add a wide range of modifiers to Syntoniq. Syntoniq's goal is not to be a complete musical production system. Its goal is to create music with fully specified pitch and dynamics. For experimentation, study, and working out melodic and harmonic ideas, this is often all you need. For complete musical production, you can take the output that Syntoniq generates and add further refinements in Csound or the Digital Audio Workstation of your choice.
 
-# Playing the File
+# Syntoniqファイルを演奏・変換・保存する
 
-Use the `syntoniq` command-line tool to convert a file to musical output. Run `syntoniq --help` to see the available options and subcommands.
+音楽へと変換するには、`syntoniq`をコマンドラインツールで使います。又`syntoniq --help`によりツールのヘルプと可能なオプションを出力します。
 
-Save the above example to a file called `hello.stq`. Then you can run
+例えば、次は`hello.stq`Csound、MIDI形式に出力するものです。
 ```sh
 syntoniq generate --score=hello.stq \
    --csound=hello.csd \
@@ -128,7 +135,7 @@ syntoniq generate --score=hello.stq \
    --json=hello.json
 ```
 
-You should see
+そうしたら、次のような表示があります。
 ```
 syntoniq score 'hello.stq' is valid
 JSON output written to hello.json
@@ -136,7 +143,11 @@ MIDI output written to hello.midi
 Csound output written to hello.csd
 ```
 
-The `--score` option is required. If no other options are given, `syntoniq` will just validate the score and report any errors it finds. The other options all tell `syntoniq` to generate a certain type of output.
+通常、変換には`--score`オプションを使用しします。この引数に
+```
+syntoniq  generate --score=hoge.stq
+```
+の様に、変換したいファイルの名称若しくはパスを入れることにより実行されます。実行には**必ず必要**です。尚、他のオプションもありますが、それらは特定の形式での出力を命令するものです（詳しくは後述します）。
 
 The file `hello.csd` contains [Csound](https://csound.com) output. If you want to use Csound, you can install it from its website. Then just run `csound hello.csd` to hear the file. You can create your own Csound instruments to use with Syntoniq. By default, it includes a simple instrument with a simple wave form that's good for clearly hearing pitches and intervals...but you probably wouldn't want to listen to a piece of music with it! *Please note: you can create much better audio with csound. This is a limitation of Syntoniq's default instrument, not csound itself!*
 
