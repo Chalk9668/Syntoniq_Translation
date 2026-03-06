@@ -117,7 +117,33 @@ Syntoniqファイルは次の要素から成り、各々は次に示すような
 
 A note consists of up to three parts: `duration:name:modifiers`. The duration is a *number of beats*. If you use csound, this will be familiar. If you are used to LilyPond, it is different. In LilyPond, `4` is a quarter note, `2` is a half note, etc. In Syntoniq, `1` is a beat, `2` is two beats, etc. Syntoniq doesn't have any concept of quarter notes, etc., as it breaks free from the usual notational conventions of Western music. Durations in Syntoniq can be fractions of a beat, but we'll come back to that later.
 
-The note name always starts with a letter and may contain a wide range of characters. A note name may end with `'` followed by an optional number or `,` followed by an optional number. These indicate the number of *cycles* to go up (`'`) or down (`,`). These are similar to octave marks in LilyPond with some differences. If you want to go up or down two octaves, use `'2` or `,2` rather than repeating the mark. Also, notice that we used the term *cycle*, not *octave*. The term *cycle* refers to the interval over which a scale repeats. The default cycle size is the octave, but you can use other intervals&mdash;more on that later!
+**音名は必ず大文字小文字のアルファベットで始まる**必要がありますが、その後に続く文字はUTF-8がエンコードしうる範囲ならほとんど自由です。例としては、
+```sh
+G
+Aｷ
+C第三
+```
+といったものは使えますが、
+```
+ド
+ｒｅ#
+(C)*
+```
+といったものはアルファベットから始まらない為、使えません。
+
+絶対音程も表現できます。音名の末尾に更に、`'`か`,`の二つの記号を付け加えられ、それぞれ`'`が1オクターブ上、`,`1オクターブ下を表します。この裏に更に半角数字を付け加えることにより、何オクターブ変位するかを表せます。例えば、
+```sh
+C'
+D,
+```
+でCが1オクターブ上に、Dが1オクターブ下に変位したことが表現されています。又
+```sh
+F''
+F'2
+```
+も同じ意味で、Fが2オクターブ上に変位したことが豹変されています。この場においては、半角数字でのオクターブ指定を推奨します。
+
+**尚オクターブの限りではありません。この場では便宜上、オクターブと書きましたが、ノンオクターブチューニングでの表現も可能です。**
 
 この記号、`~` は*hold*と呼ばれます。命令の裏に付けるとhold命令になります。これは「出された命令を続ける」という意味と、「ノートをサスティンする」という二つの意味を持ちます。詳しくは後述します。
 
