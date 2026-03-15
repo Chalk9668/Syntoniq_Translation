@@ -35,11 +35,11 @@ Syntoniqで動かせるキーボードハードウェアは予め用意された
 
 FUTURE: Update if the interactive chord builder is added
 
-A future version of Syntoniq may support an interactive chord builder that uses the keyboard's output logic to send sounds to Csound or a MIDI device. This would allow you to type note names at a command-line prompt to build chords interactively. It could function in lieu of a keyboard if you don't have the hardware, or it could allow you to build scales using the full power of Syntoniq [generated scales](../../microtonality/generated-scales/).
+将来的には、キーボードが無くても、CLIに入力した音をMIDIや[Csound](https://csound.com/)からインラクティブに鳴らせる、**interactive chord builder**を作ろうと考えています。Syntoniq [generated scales](../../microtonality/generated-scales/)の性能を誰でも、ハードウェアキーボードやソフトウェアキーボードを持たない人でもフルに使えるようにします。
+
+Syntoniq Keyboardについては、もっと詳しい説明は[こちら](../../keyboard/)からお願いします。
 
 # 補足
 同型鍵盤という用語が普通に登場しましたが、いわゆる[Isomorphic keyboard](https://en.wikipedia.org/wiki/Isomorphic_keyboard)のことです。日本だと[テルプストラキーボード](http://terpstrakeyboard.com/web-app/keys.htm?fundamental=415.305&right=4&upright=3&size=83&rotation=0&instrument=piano&enum=false&equivSteps=31&spectrum_colors=false&fundamental_color=55FF55&no_labels=false&scale=!24ET%0A%0A50.0%0A100.0%0A150.0%0A200.0%0A250.0%0A300.0%0A350.0%0A400.0%0A450.0%0A500.0%0A550.0%0A600.0%0A650.0%0A700.0%0A750.0%0A800.0%0A850.0%0A900.0%0A950.0%0A1000.0%0A1050.0%0A1100.0%0A1150.0%0A1200.0%0A&names=A%E2%99%AD%0AAd%0AA%0AA%EF%BD%B7%0AB%E2%99%AD%0ABd%0AB%0AB%EF%BD%B7%0AC%0AC%EF%BD%B7%0AC%23%0ADd%0AD%0AD%EF%BD%B7%0AD%23%0AEd%0AE%0AE%EF%BD%B7%0AF%0AF%EF%BD%B7%0AF%23%0AGd%0AG%0AG%EF%BD%B7&note_colors=3f3f3f%0A%234169e1%0Affffff%0A%23dc143c%0A3f3f3f%0A%234169e1%0Affffff%0A%2332cd32%0Affffff%0A%23dc143c%0A3f3f3f%0A%234169e1%0Affffff%0A%23dc143c%0A3f3f3f%0A%234169e1%0Affffff%0A%2332cd32%0Affffff%0A%23dc143c%0A3f3f3f%0A%234169e1%0Affffff%0A%23dc143c)（これは変拍子兄さんの二十四平均律キーボード）だとか[Lumatone Keybord](https://www.lumatone.io/)として有名な、**どこから音階を始めても音型が保たれるキーボードの奴ら**です。この日本語訳は、[めでたい](https://x.com/lapserazzle?s=20)さんのブログの記事、[流行れ！同型鍵盤 (Isomorphic Keyboard)](https://medeblogdayo.lprz.xyz/posts/isomorphic-keyboard/)から引用してきています。広めましょう。
 
 どうでもいいんですが、**ボタン式アコーディオンのあれも同型鍵盤**です。
-
-The Syntoniq Keyboard application is covered in depth in [SYNTONIQ KEYBOARD](../../keyboard/).
